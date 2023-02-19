@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    //used to update physics
+    //used to update physics. If force is involved
     private void FixedUpdate()
     {
         var movement = new Vector3(movementX, 0.0f, movementY);
