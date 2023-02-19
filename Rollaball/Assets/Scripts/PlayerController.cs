@@ -1,27 +1,18 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 0;
-    private Rigidbody rb;
+    public float speed;
     private float movementX;
     private float movementY;
-    
+    private Rigidbody rb;
+
     // Start is called before the first frame update
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-    }
-
-    private void OnMove(InputValue movementValue)
-    {
-        var movementVector = movementValue.Get<Vector2>();
-        movementX = movementVector.x;
-        movementY = movementVector.y;
     }
 
     private void Update()
@@ -29,10 +20,18 @@ public class PlayerController : MonoBehaviour
         throw new NotImplementedException();
     }
 
+
     //used to update physics
     private void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movementX, 0.0f, movementY);
-       rb.AddForce(movement * speed);
+        var movement = new Vector3(movementX, 0.0f, movementY);
+        rb.AddForce(movement * speed);
+    }
+
+    private void OnMove(InputValue movementValue)
+    {
+        var movementVector = movementValue.Get<Vector2>();
+        movementX = movementVector.x;
+        movementY = movementVector.y;
     }
 }
